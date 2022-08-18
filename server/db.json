@@ -1,0 +1,59 @@
+{
+  "users": [
+    {
+      "id": 1,
+      "userName": "name",
+      "email": "1@m.m",
+      "password": "1",
+      "contacts": []
+    },
+    {
+      "id": 2,
+      "userName": "asd",
+      "email": "2@m.m",
+      "password": "2",
+      "contacts": [
+        {
+          "id": "1",
+          "name": "Kristie Cole",
+          "phone": "79649446731"
+        },
+        {
+          "id": "2",
+          "name": "Leonor Cros",
+          "phone": "79923694631"
+        },
+        {
+          "id": "3",
+          "name": "Marsh Mccall",
+          "phone": "79346794531"
+        },
+        {
+          "id": "4",
+          "name": "LeonardoDiCaprio",
+          "phone": "79136497766"
+        },
+        {
+          "id": "5",
+          "name": "Thomas Cruise",
+          "phone": "79136549733"
+        },
+        {
+          "id": "6",
+          "name": "Bradley Pitt",
+          "phone": "79530003467"
+        },
+        {
+          "id": "7",
+          "name": "Dwayne Johnson",
+          "phone": "79159461399"
+        },
+        {
+          "id": "8",
+          "name": "John Depp",
+          "phone": "79136458888"
+        }
+      ]
+    }
+  ]
+}

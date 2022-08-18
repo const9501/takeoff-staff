@@ -1,44 +1,63 @@
-import {createAsyncThunk, createSlice} from "@reduxjs/toolkit";
+import {AnyAction, createAsyncThunk, createSlice} from "@reduxjs/toolkit";
 
-// @ts-ignore
-// @ts-ignore
-// @ts-ignore
-type loginData = {
-  email: string,
-  password: string
+
+type Contact = {
+  id: number,
+  name: string,
+  phone: string
 }
 
-export const fetchUser = createAsyncThunk(
-  'users/fetch-user',
-  async ({email, password}: loginData) => {
-    return fetch(`http://localhost:3001/users/?email=${email}&password=${password}`)
-      .then(res => {
-        if (res.ok) {
-          return res.json();
-        }
-        else throw new Error('Произошла ошибка')
-      })
-      .then(data => {
-        if (data.length) {
-          return data
-        } else throw new Error('Неверный логин или пароль')
-      })
-  }
-)
+type User = {
+  id: string,
+  userName: string,
+  email: string,
+  password: string,
+  contacts: Contact[]
+}
 
-const initialState = {
-  user: {},
+type UserState = {
+  user: User | null,
+  status: string,
+  error: null | string
+}
+
+const initialState: UserState = {
+  user: null,
   status: 'idle',
   error: null
 }
 
+type LoginData = {
+  email: string,
+  password: string
+}
+
+
+export const fetchUser = createAsyncThunk<User, LoginData>(
+  'users/fetch-user',
+  async ({email, password}) => {
+    return fetch(`http://localhost:3001/users/?email=${email}&password=${password}`)
+      .then(res => {
+        if (res.ok) {
+          return res.json()
+        } else throw new Error('Failed to fetch')
+      })
+      .then(data => {
+        if (data.length) {
+          return data[0]
+        } else throw new Error('Invalid username or password')
+      })
+  }
+)
+
+
 const userSlice = createSlice({
-  name: 'users',
+  name: 'user',
   initialState,
   reducers: {
     logout(state) {
-      state.user = {}
-    }
+      return initialState
+    },
   },
   extraReducers: (builder) => {
     builder
@@ -46,16 +65,13 @@ const userSlice = createSlice({
         state.status = 'loading'
         state.error = null
       })
-      .addCase(fetchUser.rejected, (state, action) => {
+      .addCase(fetchUser.rejected, (state, action: AnyAction) => {
         state.status = 'rejected'
-        // @ts-ignore
         state.error = action.error.message
-
       })
       .addCase(fetchUser.fulfilled, (state, action) => {
         state.status = 'fulfilled'
-        const [user] = action.payload
-        state.user = user
+        state.user = action.payload
       })
   }
 })
@@ -65,6 +81,3 @@ export const {logout} = userSlice.actions
 
 
 export default userSlice.reducer
-
-// @ts-ignore
-// export const selectUser = (state: unknown) => state.users

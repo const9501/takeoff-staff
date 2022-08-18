@@ -1,0 +1,389 @@
+@import url('https://fonts.googleapis.com/css2?family=Nunito+Sans:wght@300;400;700&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: "Nunito Sans", sans-serif;
+}
+
+
+@mixin defaultButton($fz: 20px) {
+  font-size: $fz;
+  border: none;
+  outline: none;
+  background-color: #202025;
+  color: white;
+  border-radius: 10px;
+  font-weight: 700;
+  cursor: pointer;
+}
+
+@mixin defaultHeading($fz: 300px, $pos: absolute) {
+  font-size: $fz;
+  position: $pos;
+  color: rgba(0, 0, 0, 0.63);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: -1;
+}
+
+@mixin defaultInput($color, $fz) {
+  background: transparent;
+  border: none;
+  outline: none;
+  color: $color;
+  font-size: $fz;
+
+}
+
+
+body {
+  background-color: rgba(102, 107, 147, 0.37);
+}
+
+.wrapper {
+  height: 100vh;
+
+
+  .login-page {
+    height: 100%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+
+
+    h1 {
+      @include defaultHeading(400px);
+    }
+
+
+    .login-form {
+      width: 600px;
+      height: 450px;
+      display: flex;
+      flex-direction: column;
+      gap: 2vh;
+      background-color: rgba(42, 44, 51, 0.87);
+      padding: 100px;
+      border-radius: 10px;
+
+      input {
+        @include defaultInput(white, 30px);
+        border-bottom: 2px solid white;
+        padding: 10px;
+      }
+
+      input::placeholder {
+        color: #b7b7b7;
+      }
+
+      button {
+        padding: 20px 50px;
+        @include defaultButton
+      }
+
+      button:hover {
+        background-color: #000000;
+      }
+
+      .form-error {
+        color: #fc2727;
+        font-size: 20px;
+      }
+
+
+    }
+  }
+
+  .contacts-page {
+    width: 90vw;
+    margin: 0 auto;
+    display: flex;
+    align-items: flex-start;
+    justify-content: space-between;
+    padding: 100px 0;
+
+
+    h1 {
+      @include defaultHeading(300px, fixed);
+      line-height: 90%;
+    }
+
+    .actions-container {
+
+      position: sticky;
+      top: 100px;
+      width: 400px;
+
+      .search-bar {
+
+        .input-container {
+          border-bottom: 2px solid white;
+          display: flex;
+          align-items: center;
+          justify-content: space-between;
+          padding: 5px 15px;
+
+        }
+
+        input {
+          @include defaultInput(black, 20px);
+        }
+      }
+
+      .add-contact-form {
+        margin-top: 5vh;
+        display: flex;
+        flex-direction: column;
+
+
+        input {
+          @include defaultInput(black, 20px);
+          border-bottom: 2px solid white;
+          padding: 10px;
+          margin-bottom: 1vh;
+        }
+
+        button {
+          margin-top: 2vh;
+          padding: 20px 0;
+          @include defaultButton
+        }
+
+        button:hover {
+          background-color: #000000;
+        }
+
+      }
+
+      .logout-button {
+        margin-top: 5vh;
+        width: 150px;
+        padding: 15px 0;
+        @include defaultButton
+      }
+
+      .logout-button:hover {
+        background-color: #000000;
+      }
+
+    }
+
+    .list {
+      background-color: rgba(71, 73, 85, 0.87);
+      border-radius: 10px;
+      color: white;
+      height: fit-content;
+
+      &__row:nth-child(2n) {
+        background-color: rgba(51, 51, 58, 0.49);
+      }
+
+      &__row:last-child {
+        border-radius: 0 0 10px 10px;
+      }
+
+      .id-col {
+        width: 50px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .col {
+        width: 400px;
+        display: flex;
+        justify-content: center;
+      }
+
+      .action-col {
+        width: 200px;
+        display: flex;
+        justify-content: center;
+      }
+
+      &__header {
+        display: flex;
+        justify-content: space-between;
+        padding: 20px 0;
+        font-size: 20px;
+        font-weight: 300;
+      }
+
+      &__row {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-size: 20px;
+        padding: 20px 0;
+
+
+        input {
+          @include defaultInput(white, 20px);
+          border-bottom: 1px solid white;
+          text-align: center;
+          width: 80%;
+          text-overflow: ellipsis;
+        }
+
+        input:read-only {
+          border: none;
+        }
+
+        .button-container {
+          display: flex;
+          justify-content: space-around;
+
+          button {
+            padding: 10px 20px;
+            @include defaultButton(16px)
+          }
+
+          button:hover {
+            background-color: #000000;
+          }
+        }
+
+
+      }
+
+    }
+
+
+  }
+
+  .not-found-page {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+
+    h1 {
+      @include defaultHeading(300px, static);
+      line-height: 90%;
+    }
+
+    a {
+      font-size: 50px;
+      text-decoration: none;
+      color: black;
+    }
+  }
+}
+
+@media (max-width: 1650px) {
+
+  .wrapper {
+    .contacts-page {
+      .actions-container {
+        width: 300px;
+        margin-right: 50px;
+
+        .logout-button {
+          margin-top: 5vh;
+          width: 120px;
+          padding: 15px 10px;
+          @include defaultButton
+        }
+
+        .logout-button:hover {
+          background-color: #000000;
+        }
+      }
+
+      .list {
+        .col {
+          width: 350px;
+        }
+
+        .action-col {
+          width: 150px;
+        }
+
+        &__header {
+          font-size: 16px;
+        }
+
+        &__row {
+          font-size: 16px;
+
+          .button-container {
+
+            button {
+              padding: 5px 10px;
+              @include defaultButton(14px);
+            }
+
+          }
+
+        }
+      }
+    }
+  }
+}
+
+@media (max-width: 1400px) {
+
+  .wrapper {
+
+    .contacts-page {
+
+      .actions-container {
+        width: 250px;
+        margin-right: 50px;
+
+        .search-bar {
+          input {
+            @include defaultInput(black, 16px);
+          }
+        }
+
+        .add-contact-form {
+          input {
+            @include defaultInput(black, 20px);
+            border-bottom: 2px solid white;
+          }
+        }
+
+        .logout-button {
+          width: 100px;
+          padding: 15px 10px;
+          @include defaultButton
+        }
+
+        .logout-button:hover {
+          background-color: #000000;
+        }
+      }
+
+      .list {
+        .col {
+          width: 300px;
+        }
+
+        .action-col {
+          width: 150px;
+        }
+
+        &__header {
+          font-size: 14px;
+        }
+
+        &__row {
+          font-size: 14px;
+
+          .button-container {
+
+            button {
+              padding: 5px 10px;
+              @include defaultButton(14px);
+            }
+
+          }
+
+        }
+      }
+    }
+  }
+}
