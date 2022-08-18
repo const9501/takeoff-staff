@@ -3,15 +3,15 @@
     {
       "id": 1,
       "userName": "name",
-      "email": "1@m.m",
-      "password": "1",
+      "email": "user1@mail.ru",
+      "password": "12345",
       "contacts": []
     },
     {
       "id": 2,
       "userName": "asd",
-      "email": "2@m.m",
-      "password": "2",
+      "email": "user2@mail.ru",
+      "password": "2345",
       "contacts": [
         {
           "id": "1",
