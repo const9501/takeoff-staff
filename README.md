@@ -12,3 +12,5 @@ npm run dev
 * Далее необходимо открыть [http://localhost:3000](http://localhost:3000) в браузере
 
 ## Версия node v16.14.0
+
+Данные для входа в аккаунт лежат в /server/db.json
